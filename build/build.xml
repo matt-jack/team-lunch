@@ -5,8 +5,20 @@
     <!--define folder properties-->
     <property name="dir.buildfile" value="."/>
     <property name="dir.workspace" value="${dir.buildfile}/../.."/>
-    <property name="dir.jarfile" value="${dir.buildfile}"/>
+
+    <property name="dir.jarfile" value="${dir.buildfile}/jar"/>
+
     <target name="create_run_jar">
+
+		<mkdir dir="${dir.workspace}/team-lunch/bin"/>
+		<javac srcdir="${dir.workspace}/team-lunch/src" 
+			   destdir="${dir.workspace}/team-lunch/bin">
+			<classpath>
+				<pathelement path="${dir.buildfile}/junit.jar"/>
+				<pathelement path="${dir.buildfile}/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+			</classpath>
+		</javac>
+    	
         <jar destfile="${dir.jarfile}/team-lunch.jar" filesetmanifest="mergewithoutmain">
             <manifest>
                 <attribute name="Main-Class" value="OrderEngine"/>
