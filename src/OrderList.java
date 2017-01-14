@@ -12,6 +12,6 @@ public class OrderList {
 	
 	public OrderList() {
 		this.orders = new ArrayList<Order>();
-		this.incompleteOrder = false;
+		this.incompleteOrder = true;
 	}
 }

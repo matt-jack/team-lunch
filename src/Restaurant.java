@@ -1,3 +1,4 @@
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Restaurant {
 	
@@ -19,6 +20,26 @@ public class Restaurant {
 		this.glutenFreeMealStock = gfms;
 		this.fishFreeMealStock = ffms;
 		this.nutFreeMealStock = nfms;
+		this.name = n;
+	}
+	
+	/** Initialize restaurant with name n and random paramaters
+	 *  rating:  between 0 and 5
+	 *  regularMealStock: between 0 and 50
+	 *  vegetarianMealStock: between 0 and 20
+	 *  glutenFreeMealStock: between 0 and 20
+	 *  fishFreeMealStock: between 0 and 10
+	 *  nutFreeMealStock: between 0 and 5 
+	 * 
+	 * @param n
+	 */
+	public Restaurant(String n) {
+		this.rating = ThreadLocalRandom.current().nextInt(6);
+		this.regularMealStock = ThreadLocalRandom.current().nextInt(50);
+		this.vegetarianMealStock = ThreadLocalRandom.current().nextInt(20);
+		this.glutenFreeMealStock = ThreadLocalRandom.current().nextInt(20);
+		this.fishFreeMealStock = ThreadLocalRandom.current().nextInt(10);
+		this.nutFreeMealStock = ThreadLocalRandom.current().nextInt(5);
 		this.name = n;
 	}
 	

@@ -7,10 +7,12 @@ import org.junit.Test;
 public class OrderEngineTest {
 	
 	@Test
-	/** A regular order that should succeed
+	/** A regular order that should succeed before the last restaurant
 	 * 
 	 */
 	public void testCompleteOrder() {
+		
+		System.out.println("TEST COMPLETE ORDER\n\n");
 		
 		ArrayList<Restaurant> testRestaurants = new ArrayList<Restaurant>();
 
@@ -64,6 +66,8 @@ public class OrderEngineTest {
 	 */
 	public void testIncompleteOrder() {
 		
+		System.out.println("TEST INCOMPLETE ORDER\n\n");
+		
 		ArrayList<Restaurant> testRestaurants = new ArrayList<Restaurant>();
 		
 		// cheat-sheet for meal types:     r, r,  v,  gf, ff, nf
@@ -99,5 +103,93 @@ public class OrderEngineTest {
 		assertEquals(testOrderList.orders.get(1).getGlutenFreeMeals(), 0);
 		assertEquals(testOrderList.orders.get(1).getFishFreeMeals(), 0);
 		assertEquals(testOrderList.orders.get(1).getNutFreeMeals(), 0);
+	}
+	
+	
+	@Test
+	/** A regular order that should succeed on the last restaurant
+	 * 
+	 */
+	public void testBarelyCompleteOrder() {
+		
+		System.out.println("TEST BARELY COMPLETE ORDER\n\n");
+		
+		ArrayList<Restaurant> testRestaurants = new ArrayList<Restaurant>();
+
+		// cheat-sheet for meal types:rating, r,  v,  gf, ff, nf
+		testRestaurants.add(new Restaurant(4, 30,  0, 10, 10, 0, "Restaurant 1"));
+		testRestaurants.add(new Restaurant(5, 10, 20,  0,  5, 0, "Restaurant 2"));
+		testRestaurants.add(new Restaurant(2, 6,   0,  5, 20, 0, "Restaurant 3"));
+		testRestaurants.add(new Restaurant(1, 50,  0,  0,  0, 1, "Restaurant 4"));
+		testRestaurants.add(new Restaurant(0, 50,  0,  0,  0, 4, "Restaurant 5"));
+		
+		
+		Directory testDirectory = new Directory(testRestaurants);
+		
+		// define a test order
+		int regularMeals = 45;
+		int vegetarianMeals = 10;
+		int glutenFreeMeals = 10;
+		int fishFreeMeals = 10;
+		int nutFreeMeals = 5; // only fulfilled with the last order
+		
+		OrderList testOrderList = 
+				OrderEngine.createOrderList(testDirectory, regularMeals, 
+						vegetarianMeals, glutenFreeMeals, fishFreeMeals, nutFreeMeals);
+		
+//		OrderEngine.printOrderList(testOrderList, regularMeals, 
+//				vegetarianMeals, glutenFreeMeals, fishFreeMeals, nutFreeMeals);
+		
+		assertEquals(testOrderList.orders.size(), 5);
+		assertEquals(testOrderList.incompleteOrder, false);
+		
+		assertEquals(testOrderList.orders.get(0).restaurant.rating, 5);
+		assertEquals(testOrderList.orders.get(1).restaurant.rating, 4);
+		assertEquals(testOrderList.orders.get(2).restaurant.rating, 2);
+		assertEquals(testOrderList.orders.get(3).restaurant.rating, 1);
+		assertEquals(testOrderList.orders.get(4).restaurant.rating, 0);
+		
+		assertEquals(testOrderList.orders.get(4).getNutFreeMeals(), 4);
+	}
+	
+	@Test
+	/** A regular order that should succeed, but needs to skip a restaurant 
+	 *  that has none of the needed meals in stock
+	 * 
+	 */
+	public void testCompleteOrderSkippingRestaurant() {
+		
+		System.out.println("TEST ORDER SKIPPING RESTAURANT\n\n");
+		
+		ArrayList<Restaurant> testRestaurants = new ArrayList<Restaurant>();
+
+		// cheat-sheet for meal types:rating, r,  v,  gf, ff, nf
+		testRestaurants.add(new Restaurant(5, 20,  10, 10, 10, 4, "Restaurant 1"));
+		
+		// Restaurant 2 will be the next choice, but has none of the needed nut free
+		// meals in stock
+		testRestaurants.add(new Restaurant(4, 10, 20,  0,  0, 0, "Restaurant 2"));
+
+		testRestaurants.add(new Restaurant(2, 6,   0,  5, 20, 1, "Restaurant 3"));
+		
+		
+		Directory testDirectory = new Directory(testRestaurants);
+		
+		// define a test order
+		int regularMeals = 20;
+		int vegetarianMeals = 10;
+		int glutenFreeMeals = 10;
+		int fishFreeMeals = 10;
+		int nutFreeMeals = 5; // only fulfilled with the last order
+		
+		OrderList testOrderList = 
+				OrderEngine.createOrderList(testDirectory, regularMeals, 
+						vegetarianMeals, glutenFreeMeals, fishFreeMeals, nutFreeMeals);
+		
+//		OrderEngine.printOrderList(testOrderList, regularMeals, 
+//				vegetarianMeals, glutenFreeMeals, fishFreeMeals, nutFreeMeals);
+		
+		assertEquals(testOrderList.orders.size(), 2);
+		assertEquals(testOrderList.incompleteOrder, false);
 	}
 }
