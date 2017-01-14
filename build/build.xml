@@ -13,8 +13,8 @@
                 <attribute name="Class-Path" value="."/>
             </manifest>
             <fileset dir="${dir.workspace}/team-lunch/bin"/>
-            <zipfileset excludes="META-INF/*.SF" src="/home/chrx/.p2/pool/plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="/home/chrx/.p2/pool/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/junit.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/org.hamcrest.core_1.3.0.v201303031735.jar"/>
         </jar>
     </target>
 </project>
