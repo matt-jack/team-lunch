@@ -69,32 +69,32 @@ public class OrderEngine {
 			int regularMealsNeeded = regularMealsOrdered - regularMealOrdersPlaced;
 			if(regularMealsNeeded > 0)
 				placeOrder = true;
-			else
-				regularMealsNeeded = 0;
+//			else
+//				regularMealsNeeded = 0;
 			
 			int vegetarianMealsNeeded = vegetarianMealsOrdered - vegetarianMealOrdersPlaced;
 			if(vegetarianMealsNeeded > 0)
 				placeOrder = true;
-			else
-				vegetarianMealsNeeded = 0;
+//			else
+//				vegetarianMealsNeeded = 0;
 			
 			int glutenFreeMealsNeeded = glutenFreeMealsOrdered - glutenFreeMealOrdersPlaced;
 			if(glutenFreeMealsNeeded > 0) 
 				placeOrder = true;
-			else
-				glutenFreeMealsNeeded = 0;
+//			else
+//				glutenFreeMealsNeeded = 0;
 			
 			int fishFreeMealsNeeded = fishFreeMealsOrdered - fishFreeMealOrdersPlaced;
 			if(fishFreeMealsNeeded > 0) 
 				placeOrder = true;
-			else
-				fishFreeMealsNeeded = 0;
+//			else
+//				fishFreeMealsNeeded = 0;
 			
 			int nutFreeMealsNeeded = nutFreeMealsOrdered - nutFreeMealOrdersPlaced;
 			if(nutFreeMealsNeeded > 0)
 				placeOrder = true;
-			else
-				nutFreeMealsNeeded = 0;
+//			else
+//				nutFreeMealsNeeded = 0;
 			
 			// if more orders actually need to be placed ...
 			if(placeOrder) {
@@ -145,19 +145,33 @@ public class OrderEngine {
 		int fishFreeMealsOrdered,
 		int nutFreeMealsOrdered ) {
 		
-		System.out.println("Total Order:");
+		System.out.println("Total Order+\n");
 		System.out.println("Regular meals: "+String.valueOf(regularMealsOrdered));
 		System.out.println("Vegetarian meals: "+String.valueOf(vegetarianMealsOrdered));
 		System.out.println("Gluten free meals: "+String.valueOf(glutenFreeMealsOrdered));
 		System.out.println("Fish free meals: "+String.valueOf(fishFreeMealsOrdered));
-		System.out.println("Nut free meals: "+String.valueOf(nutFreeMealsOrdered));
-		System.out.println("");
-		System.out.println("Order complete: "+String.valueOf(orderList.incompleteOrder));
+		System.out.println("Nut free meals: "+String.valueOf(nutFreeMealsOrdered)+"\n");
+		System.out.println("Order complete: "+String.valueOf(!orderList.incompleteOrder)
+						+ "\n");
+		System.out.println("===================================\n\n");
+				
 		
-		System.out.println("Restaurant Orders:\n");
+		System.out.println("Restaurant Orders:\n\n");
 		for(Order o : orderList.orders) {
+			
 			System.out.println(o.restaurant.getName());
+			
 			System.out.println("Rating: "+String.valueOf(o.restaurant.rating));
+			
+			System.out.println("Stock:");
+			System.out.println("Regular meals in stock: "+o.restaurant.regularMealStock);
+			System.out.println("Vegetarian meals in stock: "+o.restaurant.vegetarianMealStock);
+			System.out.println("Gluten free meals in stock: "+o.restaurant.glutenFreeMealStock);
+			System.out.println("Fish free meals in stock: "+o.restaurant.fishFreeMealStock);
+			System.out.println("Nut free meals in stock: "+o.restaurant.nutFreeMealStock
+					+ "\n");
+			
+			System.out.println("Order");
 			System.out.println("Regular meals ordered: " 
 								+ String.valueOf(o.getRegularMeals()));
 			System.out.println("Vegetarian meals ordered: " 
@@ -167,9 +181,8 @@ public class OrderEngine {
 			System.out.println("Fish free meals ordered: " 
 					+ String.valueOf(o.getFishFreeMeals()));
 			System.out.println("Nut free meals ordered: " 
-					+ String.valueOf(o.getNutFreeMeals()));
+					+ String.valueOf(o.getNutFreeMeals()) + "\n\n");
 			
-			System.out.println("");
 
 		}
  	}
