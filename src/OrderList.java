@@ -1,8 +1,9 @@
 import java.util.ArrayList;
 
-/** Stores a boolean value to show whether the order is complete or not
- * 
- * @author Matthew
+/** Contains a list of orders and a boolean value to show whether the order 
+ *  is complete or not
+ *  
+ * @author chrx
  *
  */
 public class OrderList {

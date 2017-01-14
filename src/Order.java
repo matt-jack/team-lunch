@@ -1,7 +1,13 @@
-
+/** Object to represent an order from a single restaurant
+ * 
+ * @author chrx
+ *
+ */
 public class Order {
 	
-	Restaurant restaurant;
+	// none of the parameters should ever need to be changed after the order
+	// is created
+	private Restaurant restaurant;
 	
 	private int regularMeals;
 	private int vegetarianMeals;
@@ -9,6 +15,15 @@ public class Order {
 	private int fishFreeMeals;
 	private int nutFreeMeals;
 	
+	/** Standard constructor which initializes class variables to supplied values
+	 * 
+	 * @param r
+	 * @param rm
+	 * @param vm
+	 * @param gfm
+	 * @param ffm
+	 * @param nfm
+	 */
 	public Order(Restaurant r, int rm, int vm, int gfm, int ffm, int nfm) {
 		
 		this.restaurant = r;
@@ -19,6 +34,10 @@ public class Order {
 		this.fishFreeMeals = ffm;
 		this.nutFreeMeals = nfm;
 	}	
+	
+	public Restaurant getRestaurant() {
+		return this.restaurant;
+	}
 	
 	public int getRegularMeals() {
 		return this.regularMeals;

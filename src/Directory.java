@@ -1,7 +1,9 @@
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
-/** Basically a List of 
+/** Basically a list of restaurants, but with an option to construct a 5 restaurant
+ *  directory with random restaurants (i.e. each restaurant has a random rating
+ *  and random meal stocks (within set limits for each type of meal)
  * 
  * @author chrx
  *

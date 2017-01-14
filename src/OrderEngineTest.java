@@ -4,10 +4,16 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+/** Test class with insufficient tests to justify setup and takedown methods
+ * 
+ * @author chrx
+ *
+ */
 public class OrderEngineTest {
 	
 	@Test
-	/** A regular order that should succeed before the last restaurant
+	/** A regular order that should succeed without ordering from the lowest
+	 *  rated restaurant
 	 * 
 	 */
 	public void testCompleteOrder() {
@@ -37,9 +43,9 @@ public class OrderEngineTest {
 		assertEquals(testOrderList.orders.size(), 3);
 		assertEquals(testOrderList.incompleteOrder, false);
 		
-		assertEquals(testOrderList.orders.get(0).restaurant.rating, 5);
-		assertEquals(testOrderList.orders.get(1).restaurant.rating, 4);
-		assertEquals(testOrderList.orders.get(2).restaurant.rating, 2);
+		assertEquals(testOrderList.orders.get(0).getRestaurant().rating, 5);
+		assertEquals(testOrderList.orders.get(1).getRestaurant().rating, 4);
+		assertEquals(testOrderList.orders.get(2).getRestaurant().rating, 2);
 		
 		assertEquals(testOrderList.orders.get(0).getRegularMeals(), 10);
 		assertEquals(testOrderList.orders.get(0).getVegetarianMeals(), 4);
@@ -89,8 +95,8 @@ public class OrderEngineTest {
 		assertEquals(testOrderList.orders.size(), 2);
 		assertEquals(testOrderList.incompleteOrder, true);
 		
-		assertEquals(testOrderList.orders.get(0).restaurant.rating, 5);
-		assertEquals(testOrderList.orders.get(1).restaurant.rating, 3);
+		assertEquals(testOrderList.orders.get(0).getRestaurant().rating, 5);
+		assertEquals(testOrderList.orders.get(1).getRestaurant().rating, 3);
 		
 		assertEquals(testOrderList.orders.get(0).getRegularMeals(), 10);
 		assertEquals(testOrderList.orders.get(0).getVegetarianMeals(), 10);
@@ -143,11 +149,11 @@ public class OrderEngineTest {
 		assertEquals(testOrderList.orders.size(), 5);
 		assertEquals(testOrderList.incompleteOrder, false);
 		
-		assertEquals(testOrderList.orders.get(0).restaurant.rating, 5);
-		assertEquals(testOrderList.orders.get(1).restaurant.rating, 4);
-		assertEquals(testOrderList.orders.get(2).restaurant.rating, 2);
-		assertEquals(testOrderList.orders.get(3).restaurant.rating, 1);
-		assertEquals(testOrderList.orders.get(4).restaurant.rating, 0);
+		assertEquals(testOrderList.orders.get(0).getRestaurant().rating, 5);
+		assertEquals(testOrderList.orders.get(1).getRestaurant().rating, 4);
+		assertEquals(testOrderList.orders.get(2).getRestaurant().rating, 2);
+		assertEquals(testOrderList.orders.get(3).getRestaurant().rating, 1);
+		assertEquals(testOrderList.orders.get(4).getRestaurant().rating, 0);
 		
 		assertEquals(testOrderList.orders.get(4).getNutFreeMeals(), 4);
 	}

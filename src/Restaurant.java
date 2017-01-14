@@ -1,5 +1,11 @@
 import java.util.concurrent.ThreadLocalRandom;
 
+/** Object to represent a restaurant, with options to construct with supplied values
+ *  or random values
+ * 
+ * @author chrx
+ *
+ */
 public class Restaurant {
 	
 	public int rating;

@@ -7,6 +7,12 @@ public class OrderEngine {
 	
 	private static Directory restaurants;
 	
+	/** Calls OrderEngine.createOrderList with a random order, then calls
+	 *  OrderEngine.printOrderList to output the resulting restaurant
+	 *  order breakdown
+	 * 
+	 * @param args
+	 */
 	public static void main(String args[]) {
 				
 		// generate a random restaurant directory
@@ -28,8 +34,21 @@ public class OrderEngine {
 			
 	}
 	
-	// Turns the given meal order into a list of individual restaurant orders 
-	// prioritized by restaurant rating
+	/** Sorts the provided directory's restaurant list by restaurant rating in
+	 *  descending order, then generates a list of individual restaurant orders
+	 *  prioritized by restaurant rating to complete the complete team lunch
+	 *  order with the tastiest food, IF POSSIBLE (5 restaurants are generated
+	 *  by Directory, and it's entirely possible that not enough desired meals
+	 *  are in stock).
+	 * 
+	 * @param directory
+	 * @param regularMealsOrdered
+	 * @param vegetarianMealsOrdered
+	 * @param glutenFreeMealsOrdered
+	 * @param fishFreeMealsOrdered
+	 * @param nutFreeMealsOrdered
+	 * @return
+	 */
 	public static OrderList createOrderList(Directory directory, 
 							int regularMealsOrdered, 
 							int vegetarianMealsOrdered,
@@ -115,6 +134,7 @@ public class OrderEngine {
 						fishFreeMealsNeeded, 
 						nutFreeMealsNeeded));
 				
+				// update the amount of orders placed
 				regularMealOrdersPlaced += regularMealsNeeded;
 				vegetarianMealOrdersPlaced += vegetarianMealsNeeded;
 				glutenFreeMealOrdersPlaced += glutenFreeMealsNeeded;
@@ -135,6 +155,17 @@ public class OrderEngine {
 		return orderList;
 	}
 	
+	/** Prints information about the order including whether or not it was complete,
+	 *  how many restaurants were ordered from, and what each individual restaurant
+	 *  order consisted of.
+	 * 
+	 * @param orderList
+	 * @param regularMealsOrdered
+	 * @param vegetarianMealsOrdered
+	 * @param glutenFreeMealsOrdered
+	 * @param fishFreeMealsOrdered
+	 * @param nutFreeMealsOrdered
+	 */
 	public static void printOrderList(OrderList orderList,
 		int regularMealsOrdered,
 		int vegetarianMealsOrdered,
@@ -157,16 +188,16 @@ public class OrderEngine {
 		System.out.println("Restaurant Orders:\n\n");
 		for(Order o : orderList.orders) {
 			
-			System.out.println(o.restaurant.getName());
+			System.out.println(o.getRestaurant().getName());
 			
-			System.out.println("Rating: "+String.valueOf(o.restaurant.rating));
+			System.out.println("Rating: "+String.valueOf(o.getRestaurant().rating));
 			
 			System.out.println("Stock:");
-			System.out.println("Regular meals in stock: "+o.restaurant.regularMealStock);
-			System.out.println("Vegetarian meals in stock: "+o.restaurant.vegetarianMealStock);
-			System.out.println("Gluten free meals in stock: "+o.restaurant.glutenFreeMealStock);
-			System.out.println("Fish free meals in stock: "+o.restaurant.fishFreeMealStock);
-			System.out.println("Nut free meals in stock: "+o.restaurant.nutFreeMealStock
+			System.out.println("Regular meals in stock: "+o.getRestaurant().regularMealStock);
+			System.out.println("Vegetarian meals in stock: "+o.getRestaurant().vegetarianMealStock);
+			System.out.println("Gluten free meals in stock: "+o.getRestaurant().glutenFreeMealStock);
+			System.out.println("Fish free meals in stock: "+o.getRestaurant().fishFreeMealStock);
+			System.out.println("Nut free meals in stock: "+o.getRestaurant().nutFreeMealStock
 					+ "\n");
 			
 			System.out.println("Order");
